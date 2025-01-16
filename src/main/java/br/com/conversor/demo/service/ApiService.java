@@ -2,12 +2,14 @@ package br.com.conversor.demo.service;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class ApiService {
 
-    private ApiRequisicao apiRequisicao = new ApiRequisicao();
+    @Autowired
+    private ApiRequisicao apiRequisicao;
 
     public JsonObject obterTaxasDeCambio() throws Exception {
         String respostaJson = apiRequisicao.obterTaxas();

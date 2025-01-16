@@ -13,6 +13,10 @@ public class ConversaoService {
     @Autowired
     private ApiService apiServico;
 
+    public void setApiService(ApiService apiServico) {
+        this.apiServico = apiServico;
+    }
+
     public ConversaoResponse converter(Double valor, String moedaOrigem, String moedaDestino) throws Exception {
         JsonObject taxasDeCambio = apiServico.obterTaxasDeCambio();
         Double taxa = taxasDeCambio.get(moedaDestino).getAsDouble();
