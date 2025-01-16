@@ -28,7 +28,7 @@ class ConversaoServiceTest {
         JsonObject taxasMock = new JsonObject();
         taxasMock.addProperty("USD", 5.0);
         taxasMock.addProperty("last_update", "2025-01-01T00:00:00Z");
-        when(apiService.obterTaxasDeCambio()).thenReturn(taxasMock);
+        when(apiService.obterTaxasDeCambio("BRL")).thenReturn(taxasMock);
 
         // Act
         ConversaoResponse response = conversaoService.converter(request);
@@ -46,7 +46,7 @@ class ConversaoServiceTest {
         JsonObject taxasMock = new JsonObject();
         taxasMock.addProperty("USD", 5.0); // Moeda EUR não está presente
         taxasMock.addProperty("last_update", "2025-01-01T00:00:00Z");
-        when(apiService.obterTaxasDeCambio()).thenReturn(taxasMock);
+        when(apiService.obterTaxasDeCambio("BRL")).thenReturn(taxasMock);
 
         // Act & Assert
         Exception exception = assertThrows(Exception.class, () -> conversaoService.converter(request));
@@ -57,7 +57,7 @@ class ConversaoServiceTest {
     void testErroNaApiTaxasNulas() throws Exception {
         // Arrange
         ConversaoRequest request = new ConversaoRequest(100.0, "BRL", "EUR");
-        when(apiService.obterTaxasDeCambio()).thenReturn(null);
+        when(apiService.obterTaxasDeCambio("BRL")).thenReturn(null);
 
         // Act & Assert
         Exception exception = assertThrows(Exception.class, () -> conversaoService.converter(request));
@@ -70,7 +70,7 @@ class ConversaoServiceTest {
         ConversaoRequest request = new ConversaoRequest(100.0, "BRL", "EUR");
         JsonObject taxasMock = new JsonObject();
         taxasMock.addProperty("USD", 5.0); // Campo last_update ausente
-        when(apiService.obterTaxasDeCambio()).thenReturn(taxasMock);
+        when(apiService.obterTaxasDeCambio("BRL")).thenReturn(taxasMock);
 
         // Act
         Exception exception = assertThrows(Exception.class, () -> conversaoService.converter(request));
