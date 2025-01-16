@@ -10,6 +10,8 @@ import java.net.URL;
 public class ApiRequisicao {
 
     public String obterTaxas() throws Exception {
+        String apiKey = System.getenv("API_KEY");
+        //String urlString = "https://v6.exchangerate-api.com/v6/" + apiKey + "/latest/USD";
 
         String urlString = "https://v6.exchangerate-api.com/v6/5f3feed4bcc18739616e67c9/latest/USD";
         URL url = new URL(urlString);
