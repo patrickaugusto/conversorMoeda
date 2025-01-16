@@ -1,5 +1,6 @@
 package br.com.conversor.demo.service;
 
+import br.com.conversor.demo.dto.ConversaoRequest;
 import br.com.conversor.demo.dto.ConversaoResponse;
 import com.google.gson.JsonObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,14 +18,15 @@ public class ConversaoService {
         this.apiServico = apiServico;
     }
 
-    public ConversaoResponse converter(Double valor, String moedaOrigem, String moedaDestino) throws Exception {
+    public ConversaoResponse converter(ConversaoRequest dtoRequest) throws Exception {
         JsonObject taxasDeCambio = apiServico.obterTaxasDeCambio();
-        Double taxa = taxasDeCambio.get(moedaDestino).getAsDouble();
-        Double valorConvertido = valor * taxa;
+        Double taxa = taxasDeCambio.get(dtoRequest.moedaDestino()).getAsDouble();
+        Double valorConvertido = dtoRequest.valor() * taxa;
 
         String ultimaAtualizacao = taxasDeCambio.get("last_update").getAsString();
 
         return new ConversaoResponse(valorConvertido, ultimaAtualizacao);
     }
+
 }
 
