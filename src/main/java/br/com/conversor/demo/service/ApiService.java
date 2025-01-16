@@ -11,8 +11,8 @@ public class ApiService {
     @Autowired
     private ApiRequisicao apiRequisicao;
 
-    public JsonObject obterTaxasDeCambio() throws Exception {
-        String respostaJson = apiRequisicao.obterTaxas();
+    public JsonObject obterTaxasDeCambio(String moedaOrigem) throws Exception {
+        String respostaJson = apiRequisicao.obterTaxas(moedaOrigem);
         JsonObject jsonObject = JsonParser.parseString(respostaJson).getAsJsonObject();
 
         JsonObject taxasDeCambio = jsonObject.getAsJsonObject("conversion_rates");

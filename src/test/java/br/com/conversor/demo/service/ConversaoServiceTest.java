@@ -1,8 +1,7 @@
 package br.com.conversor.demo.service;
+
 import br.com.conversor.demo.dto.ConversaoRequest;
 import br.com.conversor.demo.dto.ConversaoResponse;
-import br.com.conversor.demo.service.ApiService;
-import br.com.conversor.demo.service.ConversaoService;
 import com.google.gson.JsonObject;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -11,7 +10,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class ConversaoServiceTest {
